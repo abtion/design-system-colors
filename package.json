@@ -35,6 +35,7 @@
     "@types/node": "^22.8.6",
     "del-cli": "^6.0.0",
     "globals": "^15.11.0",
+    "np": "^10.0.7",
     "tailwindcss": "^3.4.14",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
@@ -42,13 +43,13 @@
   },
   "author": "Abtion",
   "license": "MIT",
-  "homepage": "https://github.com/abtion/abtion-colors#readme",
+  "homepage": "https://github.com/abtion/design-system-colors#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abtion/abtion-colors.git"
+    "url": "git+https://github.com/abtion/design-system-colors.git"
   },
   "bugs": {
-    "url": "https://github.com/abtion/abtion-colors/issues"
+    "url": "https://github.com/abtion/design-system-colors/issues"
   },
   "keywords": [],
   "directories": {
