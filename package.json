@@ -1,5 +1,5 @@
 {
-  "name": "@abtion/design-system-colors",
+  "name": "@abtion-oss/design-system-colors",
   "description": "Utilities for generating tailwind color schemes with contrast colors",
   "version": "1.0.0",
   "engines": {
