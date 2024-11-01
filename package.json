@@ -1,0 +1,84 @@
+{
+  "name": "@abtion/design-system-colors",
+  "description": "Utilities for generating tailwind color schemes with contrast colors",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18.16.0"
+  },
+  "main": "./build/index.js",
+  "type": "module",
+  "files": [
+    "build"
+  ],
+  "exports": {
+    ".": "./build/index.js",
+    "./types": "./build/src/types/main.js"
+  },
+  "scripts": {
+    "clean": "del-cli build",
+    "precompile": "npm run lint && npm run clean",
+    "compile": "tsup-node && tsc --emitDeclarationOnly --declaration",
+    "build": "npm run compile",
+    "release": "np",
+    "version": "npm run build",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "color-string": "^1.9.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/color-string": "^1.5.5",
+    "@types/node": "^22.8.6",
+    "del-cli": "^6.0.0",
+    "globals": "^15.11.0",
+    "tailwindcss": "^3.4.14",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.12.2"
+  },
+  "author": "Abtion",
+  "license": "MIT",
+  "homepage": "https://github.com/abtion/abtion-colors#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abtion/abtion-colors.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abtion/abtion-colors/issues"
+  },
+  "keywords": [],
+  "directories": {
+    "test": "tests"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "np": {
+    "message": "chore(release): %s",
+    "tag": "latest",
+    "branch": "main",
+    "anyBranch": false
+  },
+  "tsup": {
+    "entry": [
+      "./index.ts",
+      "./src/types/main.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": false,
+    "sourcemap": true,
+    "target": "esnext"
+  }
+}
