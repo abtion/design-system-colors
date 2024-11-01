@@ -1,12 +1,19 @@
 import getContrastColor from './getContrastColor.js'
-import { JSONColors } from './types.js'
+import { ColorTheme } from './types.js'
 
-// Prepare colors for usage in tailwind config and as css variables
-export default function prepareColorVariables(jsonColors: JSONColors) {
-  const { light, dark } = jsonColors
-  const result = {} as JSONColors
+/**
+ * Create a copy of a tailwind style color theme with a contrast color added to each color shade.
+ * The "light" and "dark" colors from the theme will be tested against each shade and the color with
+ * most contrast (see {@link getContrastColor}) will be picked.
+ *
+ * @param {ColorTheme} colorTheme A tailwind style color theme
+ * @returns {ColorTheme} A copy of the input color theme, with contrast colors added
+ */
+export default function addContrastColors(colorTheme: ColorTheme): ColorTheme {
+  const { light, dark } = colorTheme
+  const result = {} as ColorTheme
 
-  for (const [colorName, color] of Object.entries(jsonColors)) {
+  for (const [colorName, color] of Object.entries(colorTheme)) {
     if (typeof color === 'string') {
       // Only copy colors without shades
       result[colorName] = color

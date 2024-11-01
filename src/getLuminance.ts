@@ -1,7 +1,25 @@
 import colorString from 'color-string'
 
-// The calculation is based on the following algorithm:
-// https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+/**
+ * Calculate a color's relative luminance based on the following algorithm:
+ * https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+ *
+ * @param {string} color A string representing a color (supported by {@link colorString})
+ * @returns {number} The color's relative luminance 0-1
+ */
+export default function getLuminance(color: Parameters<typeof colorString.get.rgb>[0]): number {
+  const [rInt, gInt, bInt] = colorString.get.rgb(color)!
+
+  const rFloat = rInt / 255
+  const gFloat = gInt / 255
+  const bFloat = bInt / 255
+
+  const rLuminance = rFloat < 0.03928 ? rFloat / 12.92 : luminanceList[rInt]
+  const gLuminance = gFloat < 0.03928 ? gFloat / 12.92 : luminanceList[gInt]
+  const bLuminance = bFloat < 0.03928 ? bFloat / 12.92 : luminanceList[bInt]
+
+  return rLuminance * 0.2126 + gLuminance * 0.7152 + bLuminance * 0.0722
+}
 
 // This list represents ((RsRGB+0.055)/1.055) ^ 2.4 for all values from 0 to 255
 // All numbers have been rounded to 4 decimals
@@ -29,17 +47,3 @@ const luminanceList = [
   0.8714, 0.8796, 0.8879, 0.8963, 0.9047, 0.9131, 0.9216, 0.9301, 0.9387, 0.9473, 0.956, 0.9647,
   0.9734, 0.9823, 0.9911, 1,
 ]
-
-export default function getLuminance(...params: Parameters<typeof colorString.get.rgb>) {
-  const [rInt, gInt, bInt] = colorString.get.rgb(...params)!
-
-  const rFloat = rInt / 255
-  const gFloat = gInt / 255
-  const bFloat = bInt / 255
-
-  const rLuminance = rFloat < 0.03928 ? rFloat / 12.92 : luminanceList[rInt]
-  const gLuminance = gFloat < 0.03928 ? gFloat / 12.92 : luminanceList[gInt]
-  const bLuminance = bFloat < 0.03928 ? bFloat / 12.92 : luminanceList[bInt]
-
-  return rLuminance * 0.2126 + gLuminance * 0.7152 + bLuminance * 0.0722
-}

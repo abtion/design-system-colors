@@ -1,12 +1,17 @@
 import colorString from 'color-string'
-import { JSONColors } from './types.js'
+import { ColorTheme } from './types.js'
 
 function rgb(color: string) {
   return colorString.get.rgb(color)?.slice(0, 3).join(' ')
 }
 
-// Prepare colors for usage in tailwind config and as css variables
-export default function colorVariables(jsonColors: JSONColors) {
+/**
+ * Generates a map for CSS variables from a color theme
+ *
+ * @param {ColorTheme} colorTheme A tailwind style color theme
+ * @returns {Record<string, string>} A `[CSS variable name]: [color]` map
+ */
+export default function getColorVariables(jsonColors: ColorTheme): Record<string, string> {
   const cssVariables: Record<string, string> = {}
 
   for (const [colorName, color] of Object.entries(jsonColors)) {
