@@ -30,22 +30,19 @@ export default function getTailwindColors(colorTheme: ColorTheme, contrastColors
   const tailwindColors: TailwindColors = {}
 
   for (const [colorName, color] of Object.entries(colorTheme)) {
-    let tailwindColor: typeof colorTheme[string]
-
     if (typeof color === 'string') {
-      tailwindColor = `rgb(var(--color-${colorName}) / <alpha-value>)`
+      tailwindColors[colorName] = `rgb(var(--color-${colorName}) / <alpha-value>)`
       continue
     }
 
     const shades = color
-    tailwindColor = {}
+    const tailwindColor: typeof colorTheme[string] = {}
     for (const [shade] of Object.entries(shades)) {
       let variableName = `--color-${colorName}`
       if (shade !== 'DEFAULT') variableName += `-${shade}`
 
       tailwindColor[shade] = `rgb(var(${variableName}) / <alpha-value>)`
     }
-
     tailwindColors[colorName] = tailwindColor
   }
 
