@@ -19,7 +19,7 @@
     "noImplicitThis": true,
     "skipLibCheck": true,
     "rootDir": "./",
-    "outDir": "./build",
+    "outDir": "./build/types",
     "declaration": true,
     "types": ["@types/node"]
   },
