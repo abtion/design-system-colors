@@ -91,7 +91,7 @@ The idea is that:
     }
     ```
 
-6. Now the project can be styles using the contextual colors (and contrast colors), and shared components from [the component library](https://muffibook.abtion.com) can be dropped in and used with few adjustments needed.
+6. Now the project can be styled using the contextual colors (and contrast colors), and shared components from [the component library](https://muffibook.abtion.com) can be dropped in and used with few adjustments needed.
 
 
 ## Utilities
